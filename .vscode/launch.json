@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Build demo",
+      "preLaunchTask": "Build runtime",
+      "runtimeExecutable": "netlify",
+      "runtimeArgs": ["build"],
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": ["${workspaceFolder:next-runtime-minimal}/dist/**/*.js"]
+    }
+  ]
+}
