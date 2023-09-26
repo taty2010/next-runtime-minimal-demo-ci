@@ -4,7 +4,6 @@
     {
       "label": "Build runtime",
       "type": "shell",
-      "group": "build",
       "command": "npm run build:debug",
       "detail": "npm run build:debug",
       "options": {
@@ -16,21 +15,33 @@
       "type": "shell",
       "group": "build",
       "command": "netlify build",
-      "detail": "netlify build"
+      "detail": "netlify build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build runtime"
+      ]
     },
     {
       "label": "Serve demo",
       "type": "shell",
       "group": "build",
       "command": "netlify serve",
-      "detail": "netlify serve"
+      "detail": "netlify serve",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build runtime"
+      ]
     },
     {
       "label": "Deploy demo",
       "type": "shell",
       "group": "build",
       "command": "netlify deploy --build",
-      "detail": "netlify deploy --build"
+      "detail": "netlify deploy --build",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Build runtime"
+      ]
     }
   ]
 }
