@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a starter [Next.js](https://nextjs.org/) project to test the Next.js Minimal Runtime.
 
 ## Getting Started
 
-First, run the development server:
+Recommended setup:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Download this project to a new directory and open in a new [VSCode](https://code.visualstudio.com/) workspace.
+2. Run `npm install` to install the dependencies.
+3. Run `ntl sites:create` to link the project to a site for testing.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After setting up the site, ensure you have the [Next.js Minimal Runtime](https://github.com/netlify/next-minimal-runtime) project in an adjacent directory and add it to the workspace so you can work on both together.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+After making changes to the Next.js Minimal Runtime, run one of the build tasks (build, deploy or serve) to test your changes with this demo project. You can do this by running the `Tasks: Run Task` command in VSCode or with the Cmd+Shift+B shortcut.
 
-## Learn More
+## Debugging
 
-To learn more about Next.js, take a look at the following resources:
+To debug the Next.js Minimal Runtime, set a breakpoint in the source code and run the `Debug: Start Debugging` command in VSCode or use the F5 shortcut. This will start a build of the demo site with the runtime and attach the VSCode debugger to it.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
