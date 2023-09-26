@@ -4,10 +4,20 @@
     {
       "label": "Build runtime",
       "type": "shell",
-      "command": "npm run build:debug",
-      "detail": "npm run build:debug",
+      "command": "npm run build",
       "options": {
         "cwd": "${workspaceFolder:next-runtime-minimal}"
+      }
+    },
+    {
+      "label": "Debug runtime",
+      "type": "shell",
+      "command": "npm run build:debug",
+      "options": {
+        "cwd": "${workspaceFolder:next-runtime-minimal}"
+      },
+      "presentation": {
+        "reveal": "silent",
       }
     },
     {
