@@ -1,0 +1,32 @@
+name: testing_upstream_update
+
+on:
+  schedule:
+    - cron: '5 * * * *'
+
+jobs:
+  sync_upstream_next_e2e:
+    runs-on: ubuntu-latest
+    name: Sync with upstream
+
+    steps:
+      - name: Checkout Branch 
+        uses: actions/checkout@v3
+
+      - name: sync upstream changes
+        id: sync
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        with:
+          target_sync_branch: workflow-test
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_branch: app-routing-rendering-13.5.2
+          upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
+          test_mode: true
+
+      - name: New commits found
+        if: steps.sync.outputs.has_new_commits == 'true'
+        run: echo "New commits were found to sync."
+    
+      - name: No new commits
+        if: steps.sync.outputs.has_new_commits == 'false'
+        run: echo "There were no new commits."
