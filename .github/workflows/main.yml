@@ -2,7 +2,7 @@ name: testing_upstream_update
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '5 * * * *'
     
   workflow_dispatch:
   
