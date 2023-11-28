@@ -1,9 +1,13 @@
 const Show = ({ show, time }) => (
   <div>
-    <p>This page uses getStaticProps() to pre-fetch a TV show at {time}</p>
-    <hr />
-    <h1>Show #{show.id}</h1>
-    <p>{show.name}</p>
+    <h1>hellooooo</h1>
+    <div>
+      <p>making update to see here </p>
+      <p>New paragraph here for pull request </p>
+      <hr />
+      <h1>Show #{show.id}</h1>
+      <p>{show.name}</p>
+    </div>
   </div>
 )
 
