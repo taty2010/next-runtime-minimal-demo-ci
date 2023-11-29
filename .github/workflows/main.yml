@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Branch 
         uses: actions/checkout@v3
         with:
-          ref: workflow-test
+          ref: workflow-test-3
 
       - name: sync upstream changes
         id: sync
