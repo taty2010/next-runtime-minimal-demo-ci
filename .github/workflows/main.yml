@@ -19,6 +19,7 @@ jobs:
 
       - name: sync upstream changes
         id: sync
+        continue-on-error: true
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           target_sync_branch: workflow-test-3
@@ -26,6 +27,10 @@ jobs:
           upstream_sync_branch: app-routing-rendering-13.5.2
           upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
           # test_mode: true
+
+      - name: after_failure
+        if: always() && steps.sync.outcome == 'failure'
+        run: echo "Merge error::steps.sync.outputs::"
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
