@@ -21,7 +21,7 @@ jobs:
         id: sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
-          target_sync_branch: workflow-test
+          target_sync_branch: workflow-test-3
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
           upstream_sync_branch: app-routing-rendering-13.5.2
           upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
