@@ -34,10 +34,11 @@ jobs:
         uses: slackapi/slack-github-action@v1.24.0
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        #   MERGE_ISSUE: ${{ toJson(github.event) }}
-        # with:
-        #   payload: |
-        #     echo "$MERGE_ISSUE"
+        with:
+          payload: |
+            git log upstream/"main" --pretty=oneline
+
+          
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
