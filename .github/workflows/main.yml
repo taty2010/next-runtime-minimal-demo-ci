@@ -32,7 +32,8 @@ jobs:
       - name: Git log
         id: gitLog
         run: |
-          LOG_SYNC="$(gh api repos/taty2010/app-routing-rendering-13.5.2/actions/runs/${{ github.run_id }}/jobs)" >> "$GITHUB_OUTPUT"
+          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+          LOG_SYNC="$(gh api repos/taty2010/app-routing-rendering-13.5.2/actions/runs/${{ github.run_id }}/jobs --jq='.jobs[0]')" >> "$GITHUB_OUTPUT"
           echo "JOB_NAME: $LOG_SYNC"
         # run: |
         #   LOG_SYNC="$(gh run view ${{ github.run_id }} --repo taty2010/app-routing-rendering-13.5.2 --json status -q '.status')" >> "$GITHUB_OUTPUT"
