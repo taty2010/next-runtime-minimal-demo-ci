@@ -32,7 +32,7 @@ jobs:
       - name: Git log
         id: gitLog
         run: |
-          LOG_SYNC="$(gh run view --repo taty2010/app-routing-rendering-13.5.2 --json jobs --jq '.jobs[0].name') ${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+          LOG_SYNC="$(gh run view ${{ github.run_id }} --repo taty2010/app-routing-rendering-13.5.2 --json jobs --jq '.jobs[0].name')" >> "$GITHUB_OUTPUT"
           echo "JOB_NAME: $LOG_SYNC"
         # --job 19194442983 --log
         env:
