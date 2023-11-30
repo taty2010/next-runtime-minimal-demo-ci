@@ -29,11 +29,13 @@ jobs:
           upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
           # test_mode: true
 
-      - name: after_failure
-        if: always() && steps.sync.outcome == 'failure'
-        run: |
-          # Get your last commit message, not the merge commit.
-          text=$(git log -1 --pretty=%B)
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload-file-path: "./payload-slack-content.json"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
