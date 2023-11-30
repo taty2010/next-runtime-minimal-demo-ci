@@ -30,8 +30,7 @@ jobs:
 
       - name: after_failure
         if: always() && steps.sync.outcome == 'failure'
-        run: |
-          echo ${{ steps.sync.outputs.input_git_log_format_args }} >> $GITHUB_STEP_SUMMARY
+        run: echo ${{ github.event.head_commit.message }}
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
