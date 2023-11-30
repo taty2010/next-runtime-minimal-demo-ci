@@ -29,15 +29,30 @@ jobs:
           upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
           # test_mode: true
 
+      - name: Git log
+        id: gitLog
+        run: 
+          echo "log_sync=$(gh run view --job sync --log)" >> "$GITHUB_OUTPUT"
+
       - name: Send custom JSON data to Slack workflow
         id: slack
         if: always() && steps.sync.outcome == 'failure' && steps.sync.outputs.has_new_commits == 'true'
         uses: slackapi/slack-github-action@v1.24.0
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SYNC_LOG: ${{ steps.gitLog.outputs.LOG_SYNC }}
         with:
+          merge-conflict: "There was a merge conflict when syncing from upstream"
           payload: |
-            gh run view --job sync --log     
+            { "blocks": 
+             [ 
+              { "type":"section", 
+                "text":{ 
+                   "type": "mrkdwn",
+                    "text": "${{ fromJSON(steps.gitLog.outputs.LOG_SYNC) }}"
+                }
+              ]
+            }   
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
