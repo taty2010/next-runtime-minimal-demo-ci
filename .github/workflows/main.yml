@@ -33,7 +33,10 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          payload-file-path: "./payload-slack-content.json"
+          payload: |
+            {
+              "merge_conflit": "Netlify testing for Next.js failed with a merge conflict, please review the repo for further information",
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
