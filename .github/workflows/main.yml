@@ -33,6 +33,8 @@ jobs:
         id: gitLog
         run: 
           echo "log_sync=$(gh run view --job sync --log)" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
