@@ -32,7 +32,7 @@ jobs:
       - name: Git log
         id: gitLog
         run: 
-          echo "log_sync=$(gh run view --job sync --log --repo taty2010/app-routing-rendering-13.5.2)" >> "$GITHUB_OUTPUT"
+          echo "log_sync=$(gh run view --job ${{secret.SYNC_JOB_ID}} --log --repo taty2010/app-routing-rendering-13.5.2)" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_API_ACCESS }}
 
