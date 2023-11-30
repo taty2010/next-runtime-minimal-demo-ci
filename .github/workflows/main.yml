@@ -33,7 +33,7 @@ jobs:
         if: always() && steps.sync.outcome == 'failure'
         run: |
           # Get your last commit message, not the merge commit.
-          text=$(git log -1 --no-merges --pretty=%B)
+          text=$(git log -1 --pretty=%B)
 
       - name: New commits found
         if: steps.sync.outputs.has_new_commits == 'true'
