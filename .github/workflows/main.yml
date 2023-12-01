@@ -35,15 +35,14 @@ jobs:
       - name: Git log
         id: gitLog
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
           LOG_SYNC="$(gh api repos/taty2010/app-routing-rendering-13.5.2/actions/runs/${{ github.run_id }}/jobs --jq='.jobs[0]')" >> "$GITHUB_OUTPUT"
           echo "JOB_NAME: $LOG_SYNC"
         # run: |
         #   LOG_SYNC="$(gh run view ${{ github.run_id }} --repo taty2010/app-routing-rendering-13.5.2 --json status -q '.status')" >> "$GITHUB_OUTPUT"
         #   echo "JOB_NAME: $LOG_SYNC"
         # --job 19194442983 --log
-        # env:
-        #   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send custom JSON data to Slack workflow
         id: slack
