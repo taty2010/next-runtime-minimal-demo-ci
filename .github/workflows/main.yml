@@ -10,9 +10,7 @@ jobs:
   sync_upstream_next_e2e:
     runs-on: ubuntu-latest
     name: Sync with upstream
-    permissions:
-      actions: read
-      contents: read
+    permissions: write-all
 
     steps:
       - name: Checkout Branch 
