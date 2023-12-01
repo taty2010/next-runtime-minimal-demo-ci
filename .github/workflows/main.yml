@@ -21,15 +21,15 @@ jobs:
           ref: workflow-test-3
           fetch-depth: 0
 
-      - name: sync upstream changes
-        id: sync
-        continue-on-error: true
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
-        with:
-          target_sync_branch: workflow-test-3
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          upstream_sync_branch: app-routing-rendering-13.5.2
-          upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
+      # - name: sync upstream changes
+      #   id: sync
+      #   continue-on-error: true
+      #   uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+      #   with:
+      #     target_sync_branch: workflow-test-3
+      #     target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     upstream_sync_branch: app-routing-rendering-13.5.2
+      #     upstream_sync_repo: orinokai/next-runtime-minimal-demo-ci
           # test_mode: true
 
       - name: Git log
@@ -44,30 +44,30 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        if: always() && steps.sync.outcome == 'failure' && steps.sync.outputs.has_new_commits == 'true'
-        uses: slackapi/slack-github-action@v1.24.0
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SYNC_LOG: ${{ steps.gitLog.outputs.LOG_SYNC }}
-        with:
-          merge-conflict: "There was a merge conflict when syncing from upstream"
-          payload: |
-            { "blocks": 
-             [ 
-              { "type":"section", 
-                "text":{ 
-                   "type": "mrkdwn",
-                    "text": "${{ fromJSON(steps.gitLog.outputs.LOG_SYNC) }}"
-                }
-              ]
-            }   
+      # - name: Send custom JSON data to Slack workflow
+      #   id: slack
+      #   if: always() && steps.sync.outcome == 'failure' && steps.sync.outputs.has_new_commits == 'true'
+      #   uses: slackapi/slack-github-action@v1.24.0
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     SYNC_LOG: ${{ steps.gitLog.outputs.LOG_SYNC }}
+      #   with:
+      #     merge-conflict: "There was a merge conflict when syncing from upstream"
+      #     payload: |
+      #       { "blocks": 
+      #        [ 
+      #         { "type":"section", 
+      #           "text":{ 
+      #              "type": "mrkdwn",
+      #               "text": "${{ fromJSON(steps.gitLog.outputs.LOG_SYNC) }}"
+      #           }
+      #         ]
+      #       }   
 
-      - name: New commits found
-        if: steps.sync.outputs.has_new_commits == 'true'
-        run: echo "New commits were found to sync."
+      # - name: New commits found
+      #   if: steps.sync.outputs.has_new_commits == 'true'
+      #   run: echo "New commits were found to sync."
     
-      - name: No new commits
-        if: steps.sync.outputs.has_new_commits == 'false'
-        run: echo "There were no new commits."
+      # - name: No new commits
+      #   if: steps.sync.outputs.has_new_commits == 'false'
+      #   run: echo "There were no new commits."
